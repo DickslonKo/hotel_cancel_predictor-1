@@ -17,10 +17,10 @@ def hello_world():
     param_month = request.form.get("arrival_month")
     param_num = request.form.get("number_of_people")
 
-    with open("api_app/exported_one_hot.pickle", "rb") as fp:
+    with open("exported_one_hot.pickle", "rb") as fp:
         enc = pickle.load(fp)
 
-    with open("api_app/exported_classifier.pickle", "rb") as fp:
+    with open("exported_classifier.pickle", "rb") as fp:
         classifier = pickle.load(fp)
 
     param_hotel = "City Hotel"
