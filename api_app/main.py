@@ -17,10 +17,27 @@ def hello_world():
     param_month = request.form.get("arrival_month")
     param_num = request.form.get("number_of_people")
 
-    with open("exported_one_hot.pickle", "rb") as fp:
+    if param_hotel is None:
+        return "Please provide hotel type."
+    if param_month is None:
+        return "Please provide arrival month."
+    if param_num is None:
+        return "Please provide number of resident."
+    if not param_month.isdigit():
+        return "Month must be integer."
+    if not param_num.isdigit():
+        return "Number must be integer."
+    if param_hotel == "city":
+        param_hotel = "City Hotel"
+    elif param_hotel == "resort":
+        param_hotel = "Resort Hotel"
+    else:
+        return "Hotel type must be [city, resort]"
+
+    with open("api_app/exported_one_hot.pickle", "rb") as fp:
         enc = pickle.load(fp)
 
-    with open("exported_classifier.pickle", "rb") as fp:
+    with open("api_app/exported_classifier.pickle", "rb") as fp:
         classifier = pickle.load(fp)
 
     param_hotel = "City Hotel"
